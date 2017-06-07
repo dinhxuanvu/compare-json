@@ -7,6 +7,7 @@ import json
 import os
 import glob
 import logging
+import sys
 from jsondiff import diff
 
 # CONST
@@ -100,47 +101,47 @@ def main():
         logging.error("Imagestreams directory for Online Free doesn't exist.")
         diff_fail = True
 
-    # # Compare templates for paid
-    # if os.path.exists(os.path.join(PAID_DIR, TEMPLATES_DIR)):
-    #     online_list = glob.glob(PAID_DIR + TEMPLATES_DIR + "*.json")
-    #     for item in glob.glob(LIBRARY_DIR + PAID_DIR + TEMPLATES_DIR + "*.json"):
-    #         name = os.path.basename(item)
-    #         online_name = PAID_DIR + TEMPLATES_DIR + name
-    #         if online_name in online_list:
-    #             with open(item) as library_file:
-    #                 library_data = json.load(library_file)
-    #             with open(online_name) as online_file:
-    #                 online_data = json.load(online_file)
-    #             compare_template("Paid", name, library_data, online_data)
-    #         else:
-    #             logging.error("Online Paid directory is missing template " + name)
-    #             diff_fail = True
-    # else:
-    #     logging.error("Templates directory for Online Paid doesn't exist.")
-    #     diff_fail = True
-    #
-    # # Compare imagestreams for paid
-    # if os.path.exists(os.path.join(PAID_DIR, IMAGES_DIR)):
-    #     online_list = glob.glob(PAID_DIR + IMAGES_DIR + "*.json")
-    #     for item in glob.glob(LIBRARY_DIR + PAID_DIR + IMAGES_DIR + "*.json"):
-    #         name = os.path.basename(item)
-    #         online_name = PAID_DIR + IMAGES_DIR + name
-    #         if online_name in online_list:
-    #             with open(item) as library_file:
-    #                 library_data = json.load(library_file)
-    #             with open(online_name) as online_file:
-    #                 online_data = json.load(online_file)
-    #             compare_imagestream("Paid", name, library_data, online_data)
-    #         else:
-    #             logging.error("Online Paid directory is missing imagestream " + name)
-    #             diff_fail = True
-    # else:
-    #     logging.error("Imagestreams directory for Online Paid doesn't exist.")
-    #     diff_fail = True
+    # Compare templates for paid
+    if os.path.exists(os.path.join(PAID_DIR, TEMPLATES_DIR)):
+        online_list = glob.glob(PAID_DIR + TEMPLATES_DIR + "*.json")
+        for item in glob.glob(LIBRARY_DIR + PAID_DIR + TEMPLATES_DIR + "*.json"):
+            name = os.path.basename(item)
+            online_name = PAID_DIR + TEMPLATES_DIR + name
+            if online_name in online_list:
+                with open(item) as library_file:
+                    library_data = json.load(library_file)
+                with open(online_name) as online_file:
+                    online_data = json.load(online_file)
+                compare_template("Paid", name, library_data, online_data)
+            else:
+                logging.error("Online Paid directory is missing template " + name)
+                diff_fail = True
+    else:
+        logging.error("Templates directory for Online Paid doesn't exist.")
+        diff_fail = True
+
+    # Compare imagestreams for paid
+    if os.path.exists(os.path.join(PAID_DIR, IMAGES_DIR)):
+        online_list = glob.glob(PAID_DIR + IMAGES_DIR + "*.json")
+        for item in glob.glob(LIBRARY_DIR + PAID_DIR + IMAGES_DIR + "*.json"):
+            name = os.path.basename(item)
+            online_name = PAID_DIR + IMAGES_DIR + name
+            if online_name in online_list:
+                with open(item) as library_file:
+                    library_data = json.load(library_file)
+                with open(online_name) as online_file:
+                    online_data = json.load(online_file)
+                compare_imagestream("Paid", name, library_data, online_data)
+            else:
+                logging.error("Online Paid directory is missing imagestream " + name)
+                diff_fail = True
+    else:
+        logging.error("Imagestreams directory for Online Paid doesn't exist.")
+        diff_fail = True
 
     if diff_fail:
         print "Differences in templates/imagestreams are found!"
-        return 1
+        sys.exit(1)
 
     print "No differences are found in templates/imagestreams."
 
