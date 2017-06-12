@@ -12,7 +12,10 @@ from jsondiff import diff
 
 # CONST
 TEMPLATES_DIR = "templates/examples/"
+LIBRARY_TEMPLATES_DIR = "templates/"
 IMAGES_DIR = "imagestreams/"
+STARTER_DIR = "online-starter/"
+PRO_DIR = "online-professional/"
 FREE_DIR = "free/"
 PAID_DIR = "paid/"
 LIBRARY_DIR = "library/"
@@ -66,7 +69,7 @@ def main():
     # Compare templates for free
     if os.path.exists(os.path.join(FREE_DIR, TEMPLATES_DIR)):
         online_list = glob.glob(FREE_DIR + TEMPLATES_DIR + "*.json")
-        for item in glob.glob(LIBRARY_DIR + FREE_DIR + TEMPLATES_DIR + "*.json"):
+        for item in glob.glob(LIBRARY_DIR + STARTER_DIR + LIBRARY_TEMPLATES_DIR + "*.json"):
             name = os.path.basename(item)
             online_name = FREE_DIR + TEMPLATES_DIR + name
             if online_name in online_list:
@@ -85,7 +88,7 @@ def main():
     # Compare imagestreams for free
     if os.path.exists(os.path.join(FREE_DIR, IMAGES_DIR)):
         online_list = glob.glob(FREE_DIR + IMAGES_DIR + "*.json")
-        for item in glob.glob(LIBRARY_DIR + FREE_DIR + IMAGES_DIR + "*.json"):
+        for item in glob.glob(LIBRARY_DIR + STARTER_DIR + IMAGES_DIR + "*.json"):
             name = os.path.basename(item)
             online_name = FREE_DIR + IMAGES_DIR + name
             if online_name in online_list:
@@ -104,7 +107,7 @@ def main():
     # Compare templates for paid
     if os.path.exists(os.path.join(PAID_DIR, TEMPLATES_DIR)):
         online_list = glob.glob(PAID_DIR + TEMPLATES_DIR + "*.json")
-        for item in glob.glob(LIBRARY_DIR + PAID_DIR + TEMPLATES_DIR + "*.json"):
+        for item in glob.glob(LIBRARY_DIR + PRO_DIR + LIBRARY_TEMPLATES_DIR + "*.json"):
             name = os.path.basename(item)
             online_name = PAID_DIR + TEMPLATES_DIR + name
             if online_name in online_list:
@@ -123,7 +126,7 @@ def main():
     # Compare imagestreams for paid
     if os.path.exists(os.path.join(PAID_DIR, IMAGES_DIR)):
         online_list = glob.glob(PAID_DIR + IMAGES_DIR + "*.json")
-        for item in glob.glob(LIBRARY_DIR + PAID_DIR + IMAGES_DIR + "*.json"):
+        for item in glob.glob(LIBRARY_DIR + PRO_DIR + IMAGES_DIR + "*.json"):
             name = os.path.basename(item)
             online_name = PAID_DIR + IMAGES_DIR + name
             if online_name in online_list:
