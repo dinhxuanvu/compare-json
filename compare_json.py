@@ -22,6 +22,8 @@ LIBRARY_DIR = "library/"
 
 # Fail flag
 diff_fail = False
+# Set logger level
+logging.getLogger().setLevel(logging.INFO)
 
 def compare_template(tier, name, library_data, online_data):
     """ Compare two templates and log the differences
@@ -37,6 +39,7 @@ def compare_template(tier, name, library_data, online_data):
     result = diff(library_data, online_data)
     if result:
         msg = "Upstream imagestream is different with Online %s imagestream %s:" % (tier, name)
+        print result
         logging.error(msg)
         logging.error(json.dumps(result))
         diff_fail = True
@@ -85,6 +88,8 @@ def main():
         logging.error("Templates directory for Online Free doesn't exist.")
         diff_fail = True
 
+    logging.info("Finished comparing templates for Online Free.")
+
     # Compare imagestreams for free
     if os.path.exists(os.path.join(FREE_DIR, IMAGES_DIR)):
         online_list = glob.glob(FREE_DIR + IMAGES_DIR + "*.json")
@@ -103,6 +108,8 @@ def main():
     else:
         logging.error("Imagestreams directory for Online Free doesn't exist.")
         diff_fail = True
+
+    logging.info("Finished comparing imagestreams for Online Free.")
 
     # Compare templates for paid
     if os.path.exists(os.path.join(PAID_DIR, TEMPLATES_DIR)):
@@ -123,6 +130,8 @@ def main():
         logging.error("Templates directory for Online Paid doesn't exist.")
         diff_fail = True
 
+    logging.info("Finished comparing templates for Online Paid.")
+
     # Compare imagestreams for paid
     if os.path.exists(os.path.join(PAID_DIR, IMAGES_DIR)):
         online_list = glob.glob(PAID_DIR + IMAGES_DIR + "*.json")
@@ -141,6 +150,8 @@ def main():
     else:
         logging.error("Imagestreams directory for Online Paid doesn't exist.")
         diff_fail = True
+
+    logging.info("Finished comparing imagestreams for Online Paid.")
 
     if diff_fail:
         print "Differences in templates/imagestreams are found!"
