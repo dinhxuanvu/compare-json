@@ -39,9 +39,12 @@ def compare_template(tier, name, library_data, online_data):
     result = diff(library_data, online_data)
     if result:
         msg = "Upstream imagestream is different with Online %s imagestream %s:" % (tier, name)
-        print result
         logging.error(msg)
-        logging.error(json.dumps(result))
+        try:
+            logging.error(json.dumps(result))
+        except TypeError:
+            logging.warning("TypeError prevents the JSON diff to be converted properly. Please compare manually.")
+            pass
         diff_fail = True
 
 def compare_imagestream(tier, name, library_data, online_data):
@@ -59,7 +62,11 @@ def compare_imagestream(tier, name, library_data, online_data):
     if result:
         msg = "Upstream imagestream is different with Online %s imagestream %s:" % (tier, name)
         logging.error(msg)
-        logging.error(json.dumps(result))
+        try:
+            logging.error(json.dumps(result))
+        except TypeError:
+            logging.warning("TypeError prevents the JSON diff to be converted properly. Please compare manually.")
+            pass
         diff_fail = True
 
 def main():
