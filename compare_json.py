@@ -38,7 +38,7 @@ def compare_template(tier, name, library_data, online_data):
     global diff_fail
     result = diff(library_data, online_data)
     if result:
-        msg = "Upstream imagestream is different with Online %s imagestream %s:" % (tier, name)
+        msg = "Upstream template is different with Online %s template %s:" % (tier, name)
         logging.error(msg)
         # try:
         #     logging.error(json.dumps(result))
