@@ -16,7 +16,7 @@ LIBRARY_TEMPLATES_DIR = "templates/"
 IMAGES_DIR = "imagestreams/"
 STARTER_DIR = "online-starter/"
 PRO_DIR = "online-professional/"
-FREE_DIR = "free/"
+FREE_DIR = "ansible/roles/oso_template_imagestream_sync/files/starter/"
 PAID_DIR = "paid/"
 LIBRARY_DIR = "library/"
 
