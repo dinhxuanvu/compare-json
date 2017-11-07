@@ -11,7 +11,8 @@ import sys
 from jsondiff import diff
 
 # CONST
-TEMPLATES_DIR = "templates/examples/"
+FREE_TEMPLATES_DIR = "templates/"
+PRO_TEMPLATES_DIR = "templates/examples/"
 LIBRARY_TEMPLATES_DIR = "templates/"
 IMAGES_DIR = "imagestreams/"
 STARTER_DIR = "online-starter/"
@@ -77,11 +78,11 @@ def main():
     global diff_fail
 
     # Compare templates for free
-    if os.path.exists(os.path.join(FREE_DIR, TEMPLATES_DIR)):
-        online_list = glob.glob(FREE_DIR + TEMPLATES_DIR + "*.json")
+    if os.path.exists(os.path.join(FREE_DIR, FREE_TEMPLATES_DIR)):
+        online_list = glob.glob(FREE_DIR + FREE_TEMPLATES_DIR + "*.json")
         for item in glob.glob(LIBRARY_DIR + STARTER_DIR + LIBRARY_TEMPLATES_DIR + "*.json"):
             name = os.path.basename(item)
-            online_name = FREE_DIR + TEMPLATES_DIR + name
+            online_name = FREE_DIR + FREE_TEMPLATES_DIR + name
             if online_name in online_list:
                 with open(item) as library_file:
                     library_data = json.load(library_file)
@@ -119,11 +120,11 @@ def main():
     logging.info("Finished comparing imagestreams for Online Free.")
 
     # Compare templates for paid
-    if os.path.exists(os.path.join(PAID_DIR, TEMPLATES_DIR)):
-        online_list = glob.glob(PAID_DIR + TEMPLATES_DIR + "*.json")
+    if os.path.exists(os.path.join(PAID_DIR, PRO_TEMPLATES_DIR)):
+        online_list = glob.glob(PAID_DIR + PRO_TEMPLATES_DIR + "*.json")
         for item in glob.glob(LIBRARY_DIR + PRO_DIR + LIBRARY_TEMPLATES_DIR + "*.json"):
             name = os.path.basename(item)
-            online_name = PAID_DIR + TEMPLATES_DIR + name
+            online_name = PAID_DIR + PRO_TEMPLATES_DIR + name
             if online_name in online_list:
                 with open(item) as library_file:
                     library_data = json.load(library_file)
