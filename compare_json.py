@@ -12,13 +12,13 @@ from jsondiff import diff
 
 # CONST
 FREE_TEMPLATES_DIR = "templates/"
-PRO_TEMPLATES_DIR = "templates/examples/"
+PRO_TEMPLATES_DIR = "templates/"
 LIBRARY_TEMPLATES_DIR = "templates/"
 IMAGES_DIR = "imagestreams/"
 STARTER_DIR = "online-starter/"
 PRO_DIR = "online-professional/"
 FREE_DIR = "ansible/roles/oso_template_imagestream_sync/files/starter/"
-PAID_DIR = "paid/"
+PAID_DIR = "ansible/roles/oso_template_imagestream_sync/files/pro/"
 LIBRARY_DIR = "library/"
 
 # Fail flag
